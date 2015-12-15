@@ -1,0 +1,37 @@
+<!doctype html>
+<html ng-app="youtubeWidget">
+<head>
+   <title>Youtube widget</title>
+   <meta charset="UTF-8">
+   <meta name="apple-mobile-web-app-title" content="Kambi">
+   <meta name="description" content="Youtube Widget">
+   <meta name="HandheldFriendly" content="True">
+   <meta name="MobileOptimized" content="320">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+   <meta name="fragment" content="!"/>
+
+   <meta name="mobile-web-app-capable" content="yes">
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <meta name="apple-mobile-web-app-status-bar-style" content="black">
+   <meta name="apple-mobile-web-app-title" content="">
+
+   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"/>
+
+   <link rel="stylesheet" href="css/app.min.css">
+   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+   <script src="https://c3-static.kambi.com/sb-mobileclient/widget-api/1.0.0.7/kambi-widget-api.js"></script>
+   <script src="js/app.min.js"></script>
+</head>
+<body class="kw-body">
+<div class="kw-card l-flexbox l-vertical l-expander" ng-controller="appController">
+   <!--Header-->
+   <header class="kw-header l-pl-15">Youtube widget</header>
+
+   <!--Main-->
+   <main class="l-flexbox l-vertical l-flexed l-pack-start l-pl-15 l-pb-15 l-pr-15">
+      <div id="youtube_player"></div>
+   </main>
+</div>
+</body>
+</html>

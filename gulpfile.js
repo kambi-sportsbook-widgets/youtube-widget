@@ -37,7 +37,7 @@
    buildTemp = '.buildTemp';
 
    npmLibs = [
-      './node_modules/kambi-sportsbook-widget-libraries/dist/js/app.min.js'
+      './node_modules/kambi-sportsbook-widget-library/dist/js/app.min.js'
    ];
 
    gulp.task('default', ['build', 'clean-build'], function () {
