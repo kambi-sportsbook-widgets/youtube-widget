@@ -35,7 +35,7 @@ __`client-widgets.js`__
         - If the listType parameter value is `search`, then the list parameter value specifies the search query.
         - If the listType parameter value is `user_uploads`, then the list parameter value identifies the YouTube channel whose uploaded videos will be loaded.
         - If the listType parameter value is `playlist`, then the list parameter value specifies a YouTube playlist ID.
-2. `height` by default this is set to widget's height minus 50px
+2. `height` by default this is set to widget's height minus 37px
 3. `width` by default is set to 100%
 
 For more information on Youtube embeded Player, refer to https://developers.google.com/youtube/iframe_api_reference

@@ -32,15 +32,15 @@
          $scope.init().then(function () {
 
             var defaultYoutubeArgs = {
-                  origin: window.location.href,
-               height: $scope.defaultHeight - 50,
+               origin: window.location.href,
+               height: $scope.defaultHeight - 37,
                width: '100%',
-                  playerVars: {
-                     autoplay: 0,
-                     controls: 1,
-                     listType: 'playlist',
-                     list: 'PLFC6EDC1132AFE0FA'
-                  }
+               playerVars: {
+                  autoplay: 0,
+                  controls: 1,
+                  listType: 'playlist',
+                  list: 'PLFC6EDC1132AFE0FA'
+               }
             }, youtubeArgs;
 
             youtubeArgs = angular.merge(defaultYoutubeArgs, $scope.args.youtube);
