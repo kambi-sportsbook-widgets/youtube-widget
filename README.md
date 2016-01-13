@@ -42,3 +42,6 @@ __`client-widgets.js`__
 
 For more information on Youtube embedded Player, refer to https://developers.google.com/youtube/iframe_api_reference
 
+# Changelog
+
+changelog can be found [here](CHANGELOG.md)
