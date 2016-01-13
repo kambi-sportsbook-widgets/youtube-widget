@@ -1,5 +1,5 @@
 # youtube-widget
-A youtube widget to display a playlist player via widget settings configuration
+A widget to display a playlist or individual Youtube player via widget settings configuration
 
 ## Configuration example:
 
@@ -13,11 +13,12 @@ __`client-widgets.js`__
     "widgetId": "Youtube Manchester playlist",
     "args": {
         "youtube" : {
-            playerVars: {
-                autoplay: 0,
-                controls: 1,
-                listType: 'playlist',
-                list: 'PLFC6EDC1132AFE0FA'
+            "videoId": "M7lc1UVf-VE", // optional parameter, use without the "listType" and "list" parameters
+            "playerVars": {
+                "autoplay": 0,
+                "controls": 1,
+                "listType": "playlist",
+                "list": "PLFC6EDC1132AFE0FA"
             }
         }
     }
@@ -37,6 +38,7 @@ __`client-widgets.js`__
         - If the listType parameter value is `playlist`, then the list parameter value specifies a YouTube playlist ID.
 2. `height` by default this is set to widget's height minus 37px
 3. `width` by default is set to 100%
+3. `videoId` (optional) can be added to target a specific youtube video. It has to be the youtube video id and it excludes the `listType` and `list` parameters
 
-For more information on Youtube embeded Player, refer to https://developers.google.com/youtube/iframe_api_reference
+For more information on Youtube embedded Player, refer to https://developers.google.com/youtube/iframe_api_reference
 
