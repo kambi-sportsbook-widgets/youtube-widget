@@ -13,7 +13,8 @@ __`client-widgets.js`__
     "widgetId": "Youtube Manchester playlist",
     "args": {
         "youtube" : {
-            "videoId": "M7lc1UVf-VE", 
+            "videoId": "M7lc1UVf-VE",
+            "title": "Manchester United Playlist",
             "playerVars": {
                 "autoplay": 0,
                 "controls": 1,
@@ -38,7 +39,8 @@ __`client-widgets.js`__
         - If the listType parameter value is `playlist`, then the list parameter value specifies a YouTube playlist ID.
 2. `height` - integer - by default this is set to widget's height minus 37px
 3. `width` - integer -  by default is set to 100%
-3. `videoId` - string - (optional) can be added to target a specific youtube video. It has to be the youtube video id and it should not be used with the `listType` and `list` parameters
+4. `videoId` - string - (optional) can be added to target a specific youtube video. It has to be the youtube video id and it should not be used with the `listType` and `list` parameters
+4. `title` - string - The widget title, set according to the content type
 
 For more information on Youtube embedded Player, refer to https://developers.google.com/youtube/iframe_api_reference
 
