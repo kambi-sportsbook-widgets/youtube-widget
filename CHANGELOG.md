@@ -1,6 +1,13 @@
+2016-01-27
+==========
+
+  * Updated README
+  * KSBWI-104 Added resize listener to adjust the widget to 16/9 ratio
+
 2016-01-25
 ==========
 
+  * Updated CHANGELOG
   * Added translation support, youtube icon and custom titles
 
 2016-01-22
