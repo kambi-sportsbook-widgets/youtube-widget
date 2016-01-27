@@ -9,16 +9,32 @@
          '$scope': $scope
       }));
 
+      var kwcard = $('.kw-card'), player, widgetHeaderHeight = 37;
+
       $scope.defaultHeight = 450;
 
-      var player;
+      $scope.width = kwcard.width();
+      $scope.height = setRatio();
 
+      // Listen for window resize in order to resize the widget height
+      $(window).bind('resize', function() {
+         $scope.width = kwcard.width();
+         setRatio($scope.width);
+      });
+
+      // Inject the Youtube sdk
       function loadYoutubeApi() {
          var tag = document.createElement('script');
-
          tag.src = 'https://www.youtube.com/iframe_api';
          var firstScriptTag = document.getElementsByTagName('script')[0];
          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      }
+
+      // Set a 16/9 ratio based on iframe width plus widget header height
+      function setRatio ( width ) {
+         var newHeight = 9 * (width || $scope.width) / 16 + widgetHeaderHeight;
+         $scope.setWidgetHeight(newHeight);
+         return newHeight;
       }
 
       /**
@@ -31,11 +47,14 @@
          // so we can call our methods that require parameters from the widget settings after the init method is called
          $scope.init().then(function () {
 
+            // Set the ratio
+            setRatio();
+
             $scope.locale = $scope.getConfigValue('locale').replace('_', '-');
 
             var defaultYoutubeArgs = {
                origin: window.location.href,
-               height: $scope.defaultHeight - 37,
+               height: $scope.defaultHeight - widgetHeaderHeight,
                width: '100%',
                title: 'Manchester United Playlist',
                playerVars: {
