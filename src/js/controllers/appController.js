@@ -11,6 +11,10 @@
 
       var kwcard = $('.kw-card'), player, widgetHeaderHeight = 37;
 
+      $scope.defaultArgs = {
+         'youtube' : {}
+      };
+
       $scope.defaultHeight = 450;
 
       $scope.width = kwcard.width();
