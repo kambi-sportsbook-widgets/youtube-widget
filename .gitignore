@@ -1,7 +1,10 @@
-# Created by .ignore support plugin (hsz.mobi)
-.idea/
+.idea
 node_modules
-docs
-.sass-cache
 .awspublish-*
 .buildTemp
+.compiledTemp
+.sass-cache/
+docs
+*.map
+bower_components
+/.project
