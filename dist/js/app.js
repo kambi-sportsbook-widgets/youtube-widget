@@ -7,29 +7,27 @@
       'widgetCore.translate'
    ];
 
-   (function ( $app ) {
+   (function ($app) {
       'use strict';
       return $app;
    })(angular.module('youtubeWidget', arrDependencies));
 }).call(this);
 
-
-
 (function () {
 
    'use strict';
 
-   function appController( $scope, $controller ) {
+   function appController ($scope, $controller) {
 
       // Extend the core controller that takes care of basic setup and common functions
       angular.extend(appController, $controller('widgetCoreController', {
-         '$scope': $scope
+         $scope: $scope
       }));
 
       var kwcard = $('.kw-card'), player, widgetHeaderHeight = 37;
 
       $scope.defaultArgs = {
-         'youtube' : {}
+         youtube: {}
       };
 
       $scope.defaultHeight = 450;
@@ -38,13 +36,13 @@
       $scope.height = setRatio();
 
       // Listen for window resize in order to resize the widget height
-      $(window).bind('resize', function() {
+      $(window).bind('resize', function () {
          $scope.width = kwcard.width();
          setRatio($scope.width);
       });
 
       // Inject the Youtube sdk
-      function loadYoutubeApi() {
+      function loadYoutubeApi () {
          var tag = document.createElement('script');
          tag.src = 'https://www.youtube.com/iframe_api';
          var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -52,7 +50,7 @@
       }
 
       // Set a 16/9 ratio based on iframe width plus widget header height
-      function setRatio ( width ) {
+      function setRatio (width) {
          var newHeight = 9 * (width || $scope.width) / 16 + widgetHeaderHeight;
          $scope.setWidgetHeight(newHeight);
          return newHeight;
@@ -77,13 +75,13 @@
                origin: window.location.href,
                height: $scope.defaultHeight - widgetHeaderHeight,
                width: '100%',
-               title: 'Manchester United Playlist',
+               title: 'Barcelona Luis Suárez',
                playerVars: {
                   hl: $scope.locale,
                   autoplay: 0,
                   controls: 1,
                   listType: 'playlist',
-                  list: 'PLFC6EDC1132AFE0FA'
+                  list: 'PLkksCTsYZQhGEDvHDfvb5BGZ3QVuQNF2C'
                }
             }, youtubeArgs;
 
@@ -101,7 +99,7 @@
       loadYoutubeApi();
    }
 
-   (function ( $app ) {
+   (function ($app) {
       return $app.controller('appController', ['$scope', '$controller', appController]);
    })(angular.module('youtubeWidget'));
 

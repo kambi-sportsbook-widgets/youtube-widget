@@ -8,6 +8,6 @@
 
    var dir = requireDir('./node_modules/widget-build-tools/');
 
-   //add or override your gulp tasks here​
+   // Add or override your gulp tasks here​
 
 }).call(this);
