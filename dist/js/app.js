@@ -41,7 +41,7 @@
          setRatio($scope.width);
       });
 
-      // Inject the Youtube sdk
+      // Inject the Youtube SDK
       function loadYoutubeApi () {
          var tag = document.createElement('script');
          tag.src = 'https://www.youtube.com/iframe_api';
@@ -73,13 +73,14 @@
 
             var defaultYoutubeArgs = {
                origin: window.location.href,
-               height: $scope.defaultHeight - widgetHeaderHeight,
+               height: $scope.height - widgetHeaderHeight,
                width: '100%',
                title: 'Barcelona Luis Suárez',
                playerVars: {
                   hl: $scope.locale,
                   autoplay: 0,
                   controls: 1,
+                  showinfo: 0,
                   listType: 'playlist',
                   list: 'PLkksCTsYZQhGEDvHDfvb5BGZ3QVuQNF2C'
                }
@@ -90,6 +91,7 @@
             $scope.title = youtubeArgs.title;
 
             player = new YT.Player('youtube_player', youtubeArgs);
+
          });
       };
 
