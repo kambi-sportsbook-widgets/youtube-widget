@@ -7,7 +7,7 @@
       'widgetCore.translate'
    ];
 
-   (function ($app) {
+   (function ( $app ) {
       'use strict';
       return $app;
    })(angular.module('youtubeWidget', arrDependencies));
