@@ -1,4 +1,3 @@
-/src/mockSetupData.json
 .idea
 node_modules
 .awspublish-*
@@ -9,3 +8,4 @@ docs
 *.map
 bower_components
 /.project
+mockSetupData.json

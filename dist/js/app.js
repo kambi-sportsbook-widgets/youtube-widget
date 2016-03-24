@@ -3,8 +3,7 @@
    var arrDependencies;
 
    arrDependencies = [
-      'widgetCore',
-      'widgetCore.translate'
+      'widgetCore'
    ];
 
    (function ($app) {

@@ -17,6 +17,11 @@
    <meta name="apple-mobile-web-app-title" content="">
 
    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"/>
+   <!-- build:coreLibraryCSS -->
+   <!-- This section will be replaced in the gulp build process -->
+   <link rel="stylesheet" type="text/css" href="../node_modules/kambi-sportsbook-widget-library/src/css/app-base-all.css"/>
+   <link rel="stylesheet" type="text/css" href="../node_modules/kambi-sportsbook-widget-library/src/css/widgets.css"/>
+   <!-- endbuild -->
 
    <!-- build:css -->
    <!-- This section will be replaced in the gulp build process -->
@@ -25,7 +30,6 @@
 
    <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-sanitize.min.js"></script>
 
    <!-- build:js -->
    <!-- This section will be replaced in the gulp build process -->
@@ -40,17 +44,15 @@
    <script src="../node_modules/kambi-sportsbook-widget-library/src/js/services/coreUtilsService.js"></script>
    <!-- endbuild -->
 
-   <!-- build:translate -->
+   <!-- build:kambi-widget-api -->
    <!-- This section will be replaced in the gulp build process -->
-   <script src="../node_modules/kambi-sportsbook-widget-core-translate/dist/translate.js"></script>
-   <!-- endbuild -->
-
    <script src="https://c3-static.kambi.com/sb-mobileclient/widget-api/1.0.0.8/kambi-widget-api.js"></script>
+   <!-- endbuild -->
 </head>
 <body class="kw-body">
-<div class="kw-card l-flexbox l-vertical l-expander" ng-controller="appController">
+<div class="KambiWidget-card-background-color KambiWidget-card-text-color l-flexbox l-vertical l-expander" ng-controller="appController">
    <!--Header-->
-   <header class="kw-header l-pl-16 l-flexbox l-horizontal">
+   <header class="kw-header KambiWidget-header l-pl-16 l-flexbox l-horizontal">
       <div class="l-flexbox l-pack-center l-align-center">
          <a target="_blank" href="https://youtube.com">
             <img class="l-mr-12" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IllvdVR1YmVfTG9nbyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IgoJIHk9IjBweCIgdmlld0JveD0iMCAwIDUwMSAyMDkuMSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTAxIDIwOS4xOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+Cgkuc3Qwe2ZpbGw6dXJsKCNsb3plbmdlXzFfKTt9Cgkuc3Qxe2ZpbGw6I0ZGRkZGRjt9Cjwvc3R5bGU+CjxsaW5lYXJHcmFkaWVudCBpZD0ibG96ZW5nZV8xXyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIzNTEuNzE4NyIgeTE9Ii0zLjYzNzk3OWUtMTIiIHgyPSIzNTEuNzE4NyIgeTI9IjIwOS4wNzcyIj4KCTxzdG9wICBvZmZzZXQ9IjAiIHN0eWxlPSJzdG9wLWNvbG9yOiNFMzJFMjgiLz4KCTxzdG9wICBvZmZzZXQ9IjEiIHN0eWxlPSJzdG9wLWNvbG9yOiNCRTIxMjYiLz4KPC9saW5lYXJHcmFkaWVudD4KPHBhdGggaWQ9ImxvemVuZ2VfMl8iIGNsYXNzPSJzdDAiIGQ9Ik00OTgsNDUuMWMwLDAtMi45LTIwLjUtMTEuOS0yOS41QzQ3NC44LDMuOCw0NjIuMSwzLjcsNDU2LjIsM2MtNDEuOC0zLTEwNC41LTMtMTA0LjUtM2gtMC4xCgljMCwwLTYyLjcsMC0xMDQuNSwzYy01LjgsMC43LTE4LjYsMC44LTI5LjksMTIuNmMtOSw5LTExLjksMjkuNS0xMS45LDI5LjVzLTMsMjQuMS0zLDQ4LjF2MjIuNmMwLDI0LjEsMyw0OC4xLDMsNDguMQoJczIuOSwyMC41LDExLjksMjkuNWMxMS40LDExLjgsMjYuMywxMS41LDMyLjksMTIuN2MyMy45LDIuMywxMDEuNSwzLDEwMS41LDNzNjIuNy0wLjEsMTA0LjUtMy4xYzUuOC0wLjcsMTguNi0wLjgsMjkuOS0xMi42CgljOS05LDExLjktMjkuNSwxMS45LTI5LjVzMy0yNC4xLDMtNDguMVY5My4yQzUwMSw2OS4yLDQ5OCw0NS4xLDQ5OCw0NS4xeiIvPgo8ZyBpZD0iWW91Ij4KCTxwYXRoIGlkPSJ1XzJfIiBkPSJNMTg3LDE2OS4yaC0xOXYtMTFjLTcuMiw4LjMtMTMuMywxMi40LTIwLDEyLjRjLTUuOCwwLTkuOS0yLjgtMTEuOS03LjdjLTEuMi0zLTIuMS03LjgtMi4xLTE0Ljd2LTgwaDE5djc1CgkJYzAsNC4yLDAsNiwwLDdjMC40LDIuOCwxLjYsMy44LDQuMSwzLjhjMy42LDAsNi45LTMuMiwxMC45LTguOHYtNzdoMTlWMTY5LjJ6Ii8+Cgk8cGF0aCBpZD0ib18yXyIgZD0iTTEyMCwxMDEuMmMwLTEwLjgtMi4yLTE4LjktNi0yNGMtNS4xLTYuOS0xMy05LjctMjEtOS43Yy05LjEsMC0xNS45LDIuOC0yMSw5LjdjLTMuOSw1LjEtNiwxMy4zLTYsMjQuMWwwLDM1LjkKCQljMCwxMC43LDEuOSwxOC4xLDUuOCwyMy4yYzUuMSw2LjksMTMuMiwxMC41LDIxLjIsMTAuNXMxNi4zLTMuNiwyMS40LTEwLjVjMy44LTUuMSw1LjYtMTIuNSw1LjYtMjMuMlYxMDEuMnogTTEwMSwxMzkuMgoJCWMxLDEwLTIuMSwxNS04LDE1cy05LTUtOC0xNXYtNDBjLTEtMTAsMi4xLTE0LjcsOC0xNC43YzUuOSwwLDksNC43LDgsMTQuN0wxMDEsMTM5LjJ6Ii8+Cgk8cGF0aCBpZD0ieV8yXyIgZD0iTTQ1LDExNC4ydjU1SDI1di01NWMwLDAtMjAuNy02Ny40LTI1LTgwaDIxbDE0LDUyLjdsMTQtNTIuN2gyMUw0NSwxMTQuMnoiLz4KPC9nPgo8ZyBpZD0iVHViZSI+Cgk8cGF0aCBpZD0iZV8xXyIgY2xhc3M9InN0MSIgZD0iTTQ3NiwxMjIuMmwwLTIwLjRjMC0xMC43LTIuMS0xOC41LTUuOS0yMy41Yy01LjEtNi44LTEyLjMtMTAuNS0yMS40LTEwLjUKCQljLTkuMiwwLTE2LjUsMy42LTIxLjcsMTAuNWMtMy44LDUuMS02LjEsMTMuMy02LjEsMjR2MzVjMCwxMC42LDIuNSwxOC4xLDYuMywyMy4xYzUuMiw2LjgsMTIuNCwxMC4yLDIxLjksMTAuMgoJCWM5LjUsMCwxNi45LTMuNiwyMS45LTEwLjhjMi4yLTMuMiwzLjYtNi44LDQuMi0xMC44YzAuMi0xLjgsMC42LTUuOSwwLjYtMTEuOHYtMi44aC0xOWMwLDcuMywwLDExLjYtMC4xLDEyLjYKCQljLTEsNC44LTMuNiw3LjMtOC4xLDcuM2MtNi4yLDAtOC44LTQuNi04LjgtMTMuOXYtMThINDc2eiBNNDQwLDk2LjJjMC05LjMsMi42LTExLjksOC42LTExLjljNiwwLDguNCwyLjgsOC40LDEydjEwLjlsLTE3LDBWOTYuMnoKCQkiLz4KCTxwYXRoIGlkPSJiXzFfIiBjbGFzcz0ic3QxIiBkPSJNMzkyLjEsNjcuNmMtNi43LDAtMTMuMyw0LjEtMTkuMSwxMS4zbDAtNDMuN2gtMTh2MTM0aDE4bDAtMTAuMWM2LDcuNSwxMi42LDExLjQsMTkuMSwxMS40CgkJYzcuMiwwLDEyLjUtMy45LDE0LjktMTEuM2MxLjItNC4yLDItMTAuOCwyLTIwdi00MGMwLTkuNS0xLjItMTUuOS0yLjQtMjBDNDA0LjIsNzEuOCwzOTkuMyw2Ny42LDM5Mi4xLDY3LjZ6IE0zOTAsMTQwLjIKCQljMCwxMC0yLjQsMTMuOC03LjYsMTMuOGMtMywwLTYuNC0xLjUtOS40LTQuNmwwLTYwLjZjMy0zLDYuNC00LjYsOS40LTQuNmM1LjIsMCw3LjYsMi45LDcuNiwxMi45VjE0MC4yeiIvPgoJPHBhdGggaWQ9InVfMV8iIGNsYXNzPSJzdDEiIGQ9Ik0zNDAsMTY5LjJoLTE5di0xMWMtNy4yLDguMy0xMy4zLDEyLjQtMjAsMTIuNGMtNS44LDAtOS45LTIuOC0xMS45LTcuN2MtMS4yLTMtMi4xLTcuOC0yLjEtMTQuNwoJCXYtNzloMTl2NzRjMCw0LjIsMCw2LDAsN2MwLjQsMi44LDEuNiwzLjgsNC4xLDMuOGMzLjYsMCw2LjktMy4yLDEwLjktOC44di03NmgxOVYxNjkuMnoiLz4KCTxwb2x5Z29uIGlkPSJUIiBjbGFzcz0ic3QxIiBwb2ludHM9IjI2OCwxNjkuMiAyNDgsMTY5LjIgMjQ4LDU0LjIgMjI3LDU0LjIgMjI3LDM1LjIgMjkwLDM1LjIgMjkwLDU0LjIgMjY4LDU0LjIgCSIvPgo8L2c+Cjwvc3ZnPgo="/></a>
