@@ -1,6 +1,6 @@
 {
    "name": "youtube-widget",
-   "version": "0.2.0",
+   "version": "0.2.1",
    "description": "A youtube playlist player",
    "main": "dist/index.html",
    "scripts": {
