@@ -1,6 +1,6 @@
 {
    "name": "youtube-widget",
-   "version": "0.1.0",
+   "version": "0.2.0",
    "description": "A youtube playlist player",
    "main": "dist/index.html",
    "scripts": {
@@ -13,10 +13,7 @@
    },
    "devDependencies": {
       "changelog": "latest",
-      "del": "^2.0.2",
-      "foreach": "^2.0.5",
       "gulp": "^3.9.0",
-      "json_merger": "^1.0.0",
       "require-dir": "^0.3.0",
       "path": "^0.12.7",
       "kambi-sportsbook-widget-library": "git+ssh://git@github.com/kambi-sportsbook-widgets/widget-library.git",

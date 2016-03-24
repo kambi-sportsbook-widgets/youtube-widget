@@ -6,7 +6,7 @@
       'widgetCore'
    ];
 
-   (function ($app) {
+   (function ( $app ) {
       'use strict';
       return $app;
    })(angular.module('youtubeWidget', arrDependencies));
@@ -16,7 +16,7 @@
 
    'use strict';
 
-   function appController ($scope, $controller) {
+   function appController ( $scope, $controller ) {
 
       // Extend the core controller that takes care of basic setup and common functions
       angular.extend(appController, $controller('widgetCoreController', {
@@ -49,7 +49,7 @@
       }
 
       // Set a 16/9 ratio based on iframe width plus widget header height
-      function setRatio (width) {
+      function setRatio ( width ) {
          var newHeight = 9 * (width || $scope.width) / 16 + widgetHeaderHeight;
          $scope.setWidgetHeight(newHeight);
          return newHeight;
@@ -100,7 +100,7 @@
       loadYoutubeApi();
    }
 
-   (function ($app) {
+   (function ( $app ) {
       return $app.controller('appController', ['$scope', '$controller', appController]);
    })(angular.module('youtubeWidget'));
 
