@@ -1,107 +1,98 @@
-(function () {
-
-   var arrDependencies;
-
-   arrDependencies = [
-      'widgetCore'
-   ];
-
-   (function ( $app ) {
-      'use strict';
-      return $app;
-   })(angular.module('youtubeWidget', arrDependencies));
-}).call(this);
+'use strict';
 
 (function () {
-
    'use strict';
 
-   function appController ( $scope, $controller ) {
+   var YoutubeWidget = CoreLibrary.Component.subclass({
+      defaultArgs: {
+         youtube: {
+            origin: window.location.href,
+            height: 450,
+            width: '100%',
+            title: 'Barcelona Luis Suárez',
+            playerVars: {
+               hl: 'en',
+               autoplay: 0,
+               controls: 1,
+               showinfo: 0,
+               listType: 'playlist',
+               list: 'PLkksCTsYZQhGEDvHDfvb5BGZ3QVuQNF2C'
+            }
+         }
+      },
 
-      // Extend the core controller that takes care of basic setup and common functions
-      angular.extend(appController, $controller('widgetCoreController', {
-         $scope: $scope
-      }));
+      constructor: function constructor() {
+         CoreLibrary.Component.apply(this, arguments);
+      },
+      init: function init() {
+         var _this = this;
 
-      var kwcard = $('.kw-card'), player, widgetHeaderHeight = 37;
+         // Set a 16/9 ratio based on iframe width plus widget header height
+         var setRatio = debounce(function () {
+            // Holds main container width. Needed for ratio calculation
+            var mainContainerWidth = document.getElementById('main-container').offsetWidth;
+            var newHeight = 9 * mainContainerWidth / 16 + 37;
+            CoreLibrary.widgetModule.setWidgetHeight(newHeight);
+         }, 250);
 
-      $scope.defaultArgs = {
-         youtube: {}
-      };
+         // Inject the Youtube SDK
+         var loadYoutubeApi = function loadYoutubeApi() {
+            var tag = document.createElement('script');
+            tag.src = 'https://www.youtube.com/iframe_api';
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+         };
+         // Creat a listener for window resize in order to resize the widget height
+         window.onresize = setRatio;
 
-      $scope.defaultHeight = 450;
+         // Load the youtube api framework
+         loadYoutubeApi();
 
-      $scope.width = kwcard.width();
-      $scope.height = setRatio();
-
-      // Listen for window resize in order to resize the widget height
-      $(window).bind('resize', function () {
-         $scope.width = kwcard.width();
-         setRatio($scope.width);
-      });
-
-      // Inject the Youtube SDK
-      function loadYoutubeApi () {
-         var tag = document.createElement('script');
-         tag.src = 'https://www.youtube.com/iframe_api';
-         var firstScriptTag = document.getElementsByTagName('script')[0];
-         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-      }
-
-      // Set a 16/9 ratio based on iframe width plus widget header height
-      function setRatio ( width ) {
-         var newHeight = 9 * (width || $scope.width) / 16 + widgetHeaderHeight;
-         $scope.setWidgetHeight(newHeight);
-         return newHeight;
-      }
-
-      /**
-       * This runs when the Youtube API framework has loaded
-       */
-      window.onYouTubeIframeAPIReady = function () {
-
-         // Call the init method in the coreWidgetController so that we setup everything using our overridden values
-         // The init-method returns a promise that resolves when all of the configurations are set, for instance the $scope.args variables
-         // so we can call our methods that require parameters from the widget settings after the init method is called
-         $scope.init().then(function () {
-
-            // Set the ratio
-            setRatio();
-
-            $scope.locale = $scope.getConfigValue('locale').replace('_', '-');
-
-            var defaultYoutubeArgs = {
-               origin: window.location.href,
-               height: $scope.height - widgetHeaderHeight,
-               width: '100%',
-               title: 'Barcelona Luis Suárez',
-               playerVars: {
-                  hl: $scope.locale,
-                  autoplay: 0,
-                  controls: 1,
-                  showinfo: 0,
-                  listType: 'playlist',
-                  list: 'PLkksCTsYZQhGEDvHDfvb5BGZ3QVuQNF2C'
+         /**
+          * Debounce function for resizing window
+          */
+         function debounce(func, wait, immediate) {
+            var timeout;
+            return function () {
+               var context = this,
+                   args = arguments;
+               clearTimeout(timeout);
+               timeout = setTimeout(function () {
+                  timeout = null;
+                  if (!immediate) {
+                     func.apply(context, args);
+                  }
+               }, wait);
+               if (immediate && !timeout) {
+                  func.apply(context, args);
                }
-            }, youtubeArgs;
+            };
+         }
 
-            youtubeArgs = angular.merge(defaultYoutubeArgs, $scope.args.youtube);
+         // This runs when the Youtube API framework has loaded
+         window.onYouTubeIframeAPIReady = function () {
+            // Set initial width
+            setRatio();
+            // Get locale
+            var locale = CoreLibrary.config.clientConfig.locale.replace('_', '-');
 
-            $scope.title = youtubeArgs.title;
+            if (_this.scope.args.youtube) {
+               // Set locale
+               var playerVars = Object.assign(_this.scope.args.youtube, { hl: locale });
+               var youtubeArgs = Object.assign(_this.scope.args.youtube, playerVars);
+               _this.scope.widgetTitle = _this.scope.args.youtube.title;
+               // Load player
+               var player = new YT.Player('youtube_player', youtubeArgs);
+            } else {
+               // Remove widget if config fails
+               CoreLibrary.widgetModule.removeWidget();
+            }
+         };
+      }
+   });
 
-            player = new YT.Player('youtube_player', youtubeArgs);
-
-         });
-      };
-
-      /**
-       * Load the youtube api framework
-       */
-      loadYoutubeApi();
-   }
-
-   (function ( $app ) {
-      return $app.controller('appController', ['$scope', '$controller', appController]);
-   })(angular.module('youtubeWidget'));
-
-}).call(this);
+   var youtubeWidget = new YoutubeWidget({
+      rootElement: 'html'
+   });
+})();
+//# sourceMappingURL=app.js.map
