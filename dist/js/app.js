@@ -1356,7 +1356,7 @@ CoreLibrary.widgetModule = function () {
             // Set initial width
             setRatio();
             // Get locale
-            var locale = CoreLibrary.config.clientConfig.locale.replace('_', '-');
+            var locale = CoreLibrary.config.locale.replace('_', '-');
 
             if (_this.scope.args.youtube) {
                // Set locale

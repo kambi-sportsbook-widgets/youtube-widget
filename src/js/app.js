@@ -71,7 +71,7 @@
             // Set initial width
             setRatio();
             // Get locale
-            let locale = CoreLibrary.config.clientConfig.locale.replace('_', '-');
+            let locale = CoreLibrary.config.locale.replace('_', '-');
 
             if ( this.scope.args.youtube ) {
                // Set locale
