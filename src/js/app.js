@@ -79,7 +79,7 @@
                let youtubeArgs = Object.assign(this.scope.args.youtube, playerVars);
                this.scope.widgetTitle = this.scope.args.youtube.title;
                // Load player
-               let player = new YT.Player('youtube_player', youtubeArgs);
+               let player = new window.YT.Player('youtube_player', youtubeArgs);
             } else {
                // Remove widget if config fails
                CoreLibrary.widgetModule.removeWidget();
