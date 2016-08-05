@@ -3,19 +3,16 @@
 
    var YoutubeWidget = CoreLibrary.Component.subclass({
       defaultArgs: {
-         youtube: {
-            origin: window.location.href,
-            height: '100%',
-            width: '100%',
-            title: 'UEFA EURO 2016',
-            playerVars: {
-               hl: 'en',
-               autoplay: 0,
-               controls: 1,
-               showinfo: 0,
-               listType: 'playlist',
-               list: 'PLkksCTsYZQhFI3Niv9mtpEiRX6XZDy6El'
-            }
+         // all options available: https://developers.google.com/youtube/iframe_api_reference
+         origin: window.location.href,
+         height: '100%',
+         width: '100%',
+         title: null, // title of the widget, if null uses the video title
+         videoId: 'Gzewqj0yjoQ', // id of the video to show
+         playerVars: {
+            autoplay: 0,
+            controls: 1,
+            showinfo: 0
          }
       },
 
@@ -54,14 +51,24 @@
             // Get locale
             let locale = CoreLibrary.config.locale.replace('_', '-');
 
-            if ( this.scope.args.youtube ) {
-               // Set locale
-               let playerVars = Object.assign(this.scope.args.youtube, { hl: locale });
-               let youtubeArgs = Object.assign(this.scope.args.youtube, playerVars);
-               this.scope.widgetTitle = this.scope.args.youtube.title;
-               // Load player
-               let player = new window.YT.Player('youtube_player', youtubeArgs);
-            } else {
+            if (this.scope.args.videoId == null) {
+               CoreLibrary.widgetModule.removeWidget();
+            }
+
+            try {
+               this.scope.args.hl = locale;
+               let player = null;
+               if (this.scope.args.title != null) {
+                  this.scope.widgetTitle = this.scope.args.title;
+               } else {
+                  this.scope.args.events = {
+                     onReady: () => {
+                        this.scope.widgetTitle = player.getVideoData().title;
+                     }
+                  }
+               }
+               player = new window.YT.Player('youtube_player', this.scope.args);
+            } catch (e) {
                // Remove widget if config fails
                CoreLibrary.widgetModule.removeWidget();
             }
