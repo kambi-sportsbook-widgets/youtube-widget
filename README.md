@@ -5,6 +5,8 @@
 
 A widget to display an embedded youtube playlist or individual embedded youtube video
 
+This is a C-widget that means that it is not provided by Kambi directly, instead the operators that want to use this need to build and host the widget themselves. Please see Build Instructions.
+
 ## Configuration
 
 Arguments and default values:
