@@ -8,7 +8,7 @@
          height: '100%',
          width: '100%',
          title: null, // title of the widget, if null uses the video title
-         videoId: 'Gzewqj0yjoQ', // id of the video to show
+         videoId: null, // id of the video to show
          playerVars: {
             autoplay: 0,
             controls: 1,

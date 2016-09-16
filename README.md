@@ -1,49 +1,40 @@
 # youtube-widget
-A widget to display a playlist or individual Youtube player via widget settings configuration
 
-## Configuration example:
 
-__`client-widgets.js`__
+![](https://github.com/kambi-sportsbook-widgets/youtube-widget/blob/master/screenshot.png?raw=true)
 
+A widget to display an embedded youtube playlist or individual embedded youtube video
+
+## Configuration
+
+Arguments and default values:
 ```json
-
-...
 {
-    "order": 1,
-    "widgetId": "Youtube Manchester playlist",
-    "args": {
-        "youtube" : {
-            "videoId": "M7lc1UVf-VE",
-            "title": "Manchester United Playlist",
-            "playerVars": {
-                "autoplay": 0,
-                "controls": 1,
-                "listType": "playlist",
-                "list": "PLFC6EDC1132AFE0FA"
-            }
-        }
+    "videoId": "M7lc1UVf-VE",
+    "title": null,
+    "playerVars": {
+        "autoplay": 0,
+        "controls": 1,
+        "showinfo": 0
     }
-},
-...
-
+}
 ```
 
 ### The configuration object must contain the key 'youtube', which in turn must hold the following keys, values:
-1. `playerVars` - object - holds the player configuration
-    - `autoplay` - integer - This parameter specifies whether the initial video will automatically start to play when the player loads. Supported values are 0 or 1. The default value is 0.
-    - `controls` - integer -  This parameter indicates whether the video player controls are displayed. Values: 0, 1 or 2
-    - `listType` - string - The listType parameter, in conjunction with the list parameter, identifies the content that will load in the player. Valid parameter values are `playlist`, `search`, and `user_uploads`.
-    - `list` - string - The list parameter, in conjunction with the listType parameter, identifies the content that will load in the player.
-        - If the listType parameter value is `search`, then the list parameter value specifies the search query.
-        - If the listType parameter value is `user_uploads`, then the list parameter value identifies the YouTube channel whose uploaded videos will be loaded.
-        - If the listType parameter value is `playlist`, then the list parameter value specifies a YouTube playlist ID.
-2. `height` - integer - by default this is set to match the 16/9 wide ratio based on widget's width
-3. `width` - integer -  by default is set to 100%
-4. `videoId` - string - (optional) can be added to target a specific youtube video. It has to be the youtube video id and it should not be used with the `listType` and `list` parameters
-5. `title` - string - The widget title, set according to the content type
 
-For more information on Youtube embedded Player, refer to https://developers.google.com/youtube/iframe_api_reference
+1. videoId - string - (optional) can be added to target a specific youtube video. It has to be the youtube video id and it should not be used with the `listType` and `list` parameters
+2. title - string - if undefined will use the video title
+3. playerVars - object - holds the player configuration
+    - autoplay - integer - Specifies whether the initial video will automatically start to play when the player loads. Supported values are 0 or 1.
+    - controls - integer - Indicates whether the video player controls are displayed. Values: 0, 1 or 2
+    - showinfo - integer - Indicates if it should show information about the video before playing (video title and uploader). Values: 0 or 1
 
-# Changelog
 
-changelog can be found [here](CHANGELOG.md)
+For more information of all values possible in playerVars see:
+
+https://developers.google.com/youtube/player_parameters?playerVersion=HTML5
+
+
+### Build Instructions
+
+Please refer to the [core-library](https://github.com/kambi-sportsbook-widgets/widget-core-library)
