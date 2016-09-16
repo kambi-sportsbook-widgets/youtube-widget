@@ -1,7 +1,7 @@
 # youtube-widget
 
 
-![](https://github.com/kambi-sportsbook-widgets/youtube-widget/blob/master/screenshot.png?raw=true)
+![](https://github.com/kambi-sportsbook-widgets/youtube-widget/blob/master/screenshot.jpg?raw=true)
 
 A widget to display an embedded youtube playlist or individual embedded youtube video
 
